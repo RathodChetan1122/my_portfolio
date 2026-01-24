@@ -1,4 +1,3 @@
-import { Download, Github, Linkedin, Mail, Moon, Phone, Sun } from "lucide-react";
 import { useState } from "react";
 
 export default function App() {
@@ -29,35 +28,35 @@ export default function App() {
             cursor: "pointer",
           }}
         >
-          {dark ? <Sun /> : <Moon />}
+          Toggle
         </button>
 
-        <h1 style={{ fontSize: 48 }}>Rathod Chetan</h1>
+        <h1>Rathod Chetan</h1>
 
-        <p style={{ opacity: 0.8 }}>
-          Full Stack Developer | Java | Python | Flask
-        </p>
+        <p>Full Stack Developer | Java | Python | Flask</p>
 
-        <div
-          style={{
-            marginTop: 20,
-            display: "flex",
-            justifyContent: "center",
-            gap: 15,
-            flexWrap: "wrap",
-          }}
-        >
-          <Btn
+        <div style={{ marginTop: 20 }}>
+          <a
             href="https://github.com/RathodChetan1122"
-            icon={<Github />}
-            text="GitHub"
-          />
-          <Btn
+            target="_blank"
+            rel="noreferrer"
+            style={btn}
+          >
+            GitHub
+          </a>
+
+          <a
             href="https://www.linkedin.com/in/rathod-chetan-826b13259/"
-            icon={<Linkedin />}
-            text="LinkedIn"
-          />
-          <Btn href="/resume.pdf" icon={<Download />} text="Resume" />
+            target="_blank"
+            rel="noreferrer"
+            style={btn}
+          >
+            LinkedIn
+          </a>
+
+          <a href="/resume.pdf" style={btn}>
+            Resume
+          </a>
         </div>
       </header>
 
@@ -66,53 +65,19 @@ export default function App() {
       </Section>
 
       <Section title="Projects">
-        <Project title="Real-Time Chat App" />
-        <Project title="Sentiment Analysis" />
+        <div style={card}>Real-Time Chat App</div>
+        <div style={card}>Sentiment Analysis</div>
       </Section>
 
       <Section title="Contact">
-        <p>
-          <Mail /> chetanindia41@gmail.com
-        </p>
-        <p>
-          <Phone /> 8919104623
-        </p>
+        <p>Email: chetanindia41@gmail.com</p>
+        <p>Phone: 8919104623</p>
       </Section>
 
-      <footer
-        style={{
-          textAlign: "center",
-          padding: 20,
-          background: "rgba(0,0,0,0.4)",
-          opacity: 0.7,
-        }}
-      >
+      <footer style={footer}>
         © {new Date().getFullYear()} Rathod Chetan
       </footer>
     </div>
-  );
-}
-
-/* Components */
-
-function Btn({ href, icon, text }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      style={{
-        padding: "8px 15px",
-        background: "rgba(255,255,255,0.2)",
-        borderRadius: 6,
-        color: "white",
-        textDecoration: "none",
-        display: "flex",
-        gap: 5,
-      }}
-    >
-      {icon} {text}
-    </a>
   );
 }
 
@@ -120,25 +85,34 @@ function Section({ title, children }) {
   return (
     <section style={{ padding: 40, textAlign: "center" }}>
       <h2>{title}</h2>
-      <div style={{ maxWidth: 700, margin: "auto", opacity: 0.8 }}>
-        {children}
-      </div>
+      <div style={{ maxWidth: 700, margin: "auto" }}>{children}</div>
     </section>
   );
 }
 
-function Project({ title }) {
-  return (
-    <div
-      style={{
-        background: "rgba(255,255,255,0.1)",
-        margin: "10px auto",
-        maxWidth: 500,
-        padding: 15,
-        borderRadius: 8,
-      }}
-    >
-      {title}
-    </div>
-  );
-}
+/* Styles */
+
+const btn = {
+  padding: "8px 15px",
+  margin: "5px",
+  background: "rgba(255,255,255,0.2)",
+  borderRadius: 6,
+  color: "white",
+  textDecoration: "none",
+  display: "inline-block",
+};
+
+const card = {
+  background: "rgba(255,255,255,0.1)",
+  margin: "10px auto",
+  maxWidth: 500,
+  padding: 15,
+  borderRadius: 8,
+};
+
+const footer = {
+  textAlign: "center",
+  padding: 20,
+  background: "rgba(0,0,0,0.4)",
+  opacity: 0.7,
+};
