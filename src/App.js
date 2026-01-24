@@ -8,111 +8,177 @@ export default function App() {
       style={{
         minHeight: "100vh",
         background: dark
-          ? "linear-gradient(135deg,#1e1b4b,#6b21a8,#be185d)"
-          : "#f3f4f6",
-        color: dark ? "white" : "black",
-        fontFamily: "Arial, sans-serif",
+          ? "linear-gradient(135deg,#0f172a,#4c1d95,#be185d)"
+          : "linear-gradient(135deg,#f9fafb,#e5e7eb)",
+        color: dark ? "#f9fafb" : "#111827",
+        fontFamily: "Poppins, Arial, sans-serif",
+        transition: "0.3s",
       }}
     >
       {/* Header */}
-      <header style={{ textAlign: "center", padding: "80px 20px" }}>
-        <button
-          onClick={() => setDark(!dark)}
-          style={{
-            position: "absolute",
-            right: 20,
-            top: 20,
-            padding: 8,
-            borderRadius: "50%",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Toggle
+      <header style={hero}>
+        <button onClick={() => setDark(!dark)} style={toggle}>
+          {dark ? "🌙" : "☀️"}
         </button>
 
-        <h1>Rathod Chetan</h1>
+        <h1 style={title}>Rathod Chetan</h1>
 
-        <p>Full Stack Developer | Java | Python | Flask</p>
+        <p style={subtitle}>
+          Full Stack Developer • Java • Python • Flask
+        </p>
 
-        <div style={{ marginTop: 20 }}>
-          <a
-            href="https://github.com/RathodChetan1122"
-            target="_blank"
-            rel="noreferrer"
-            style={btn}
-          >
-            GitHub
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/rathod-chetan-826b13259/"
-            target="_blank"
-            rel="noreferrer"
-            style={btn}
-          >
-            LinkedIn
-          </a>
-
-          <a href="/resume.pdf" style={btn}>
-            Resume
-          </a>
+        <div style={btnGroup}>
+          <Btn
+            text="GitHub"
+            link="https://github.com/RathodChetan1122"
+          />
+          <Btn
+            text="LinkedIn"
+            link="https://www.linkedin.com/in/rathod-chetan-826b13259/"
+          />
+          <Btn text="Resume" link="/resume.pdf" />
         </div>
       </header>
 
-      <Section title="About">
-        Passionate engineering student focused on building real-world projects.
+      {/* Sections */}
+      <Section title="About Me">
+        Passionate engineering student who loves building scalable web
+        applications and solving real-world problems.
       </Section>
 
       <Section title="Projects">
-        <div style={card}>Real-Time Chat App</div>
-        <div style={card}>Sentiment Analysis</div>
+        <Project
+          name="Real-Time Chat App"
+          desc="Flask + SocketIO based messaging platform."
+        />
+        <Project
+          name="Sentiment Analysis"
+          desc="Machine Learning based review analyzer."
+        />
       </Section>
 
       <Section title="Contact">
-        <p>Email: chetanindia41@gmail.com</p>
-        <p>Phone: 8919104623</p>
+        <p>📧 chetanindia41@gmail.com</p>
+        <p>📞 8919104623</p>
       </Section>
 
       <footer style={footer}>
-        © {new Date().getFullYear()} Rathod Chetan
+        © {new Date().getFullYear()} Rathod Chetan • Portfolio
       </footer>
     </div>
   );
 }
 
+/* Components */
+
+function Btn({ text, link }) {
+  return (
+    <a href={link} target="_blank" rel="noreferrer" style={btn}>
+      {text}
+    </a>
+  );
+}
+
 function Section({ title, children }) {
   return (
-    <section style={{ padding: 40, textAlign: "center" }}>
-      <h2>{title}</h2>
-      <div style={{ maxWidth: 700, margin: "auto" }}>{children}</div>
+    <section style={section}>
+      <h2 style={sectionTitle}>{title}</h2>
+      <div style={sectionContent}>{children}</div>
     </section>
+  );
+}
+
+function Project({ name, desc }) {
+  return (
+    <div style={card}>
+      <h3>{name}</h3>
+      <p>{desc}</p>
+    </div>
   );
 }
 
 /* Styles */
 
+const hero = {
+  textAlign: "center",
+  padding: "100px 20px",
+  position: "relative",
+};
+
+const toggle = {
+  position: "absolute",
+  right: 25,
+  top: 25,
+  fontSize: 22,
+  background: "rgba(255,255,255,0.15)",
+  border: "none",
+  padding: "8px 12px",
+  borderRadius: "50%",
+  cursor: "pointer",
+  color: "white",
+};
+
+const title = {
+  fontSize: "3.5rem",
+  fontWeight: "700",
+  letterSpacing: "1px",
+};
+
+const subtitle = {
+  marginTop: 10,
+  fontSize: "1.2rem",
+  opacity: 0.85,
+};
+
+const btnGroup = {
+  marginTop: 30,
+  display: "flex",
+  justifyContent: "center",
+  gap: 15,
+  flexWrap: "wrap",
+};
+
 const btn = {
-  padding: "8px 15px",
-  margin: "5px",
-  background: "rgba(255,255,255,0.2)",
-  borderRadius: 6,
+  padding: "10px 22px",
+  borderRadius: 25,
+  background: "linear-gradient(135deg,#6366f1,#ec4899)",
   color: "white",
   textDecoration: "none",
-  display: "inline-block",
+  fontWeight: "600",
+  transition: "0.3s",
+};
+
+const section = {
+  padding: "70px 20px",
+  textAlign: "center",
+};
+
+const sectionTitle = {
+  fontSize: "2.2rem",
+  marginBottom: 20,
+};
+
+const sectionContent = {
+  maxWidth: 800,
+  margin: "auto",
+  fontSize: "1.05rem",
+  opacity: 0.9,
 };
 
 const card = {
-  background: "rgba(255,255,255,0.1)",
-  margin: "10px auto",
+  background: "rgba(255,255,255,0.12)",
+  backdropFilter: "blur(10px)",
+  margin: "15px auto",
   maxWidth: 500,
-  padding: 15,
-  borderRadius: 8,
+  padding: 25,
+  borderRadius: 15,
+  boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
 };
 
 const footer = {
   textAlign: "center",
-  padding: 20,
+  padding: 25,
   background: "rgba(0,0,0,0.4)",
-  opacity: 0.7,
+  fontSize: "0.9rem",
+  opacity: 0.8,
 };
