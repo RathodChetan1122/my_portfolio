@@ -36,7 +36,10 @@ export default function App() {
             text="LinkedIn"
             link="https://www.linkedin.com/in/rathod-chetan-826b13259/"
           />
-          <Btn text="Resume" link="/resume.pdf" />
+          <Btn
+  text="Resume"
+  link={`${process.env.PUBLIC_URL}/resume.pdf`}
+/>
         </div>
       </header>
 
